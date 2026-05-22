@@ -16,3 +16,17 @@ The same is done on Starter Kit guide.
     
 #### What I've Learned
 I've learned to setting up ESP-IDF extension (and all its on computer requirements) and also how to deal with a multi-folder project as I would like to manage this repository.
+Also, I've learned that on ESP32 there are three possible ways to flash the binary on the microcontroller:
+- JTAG: Joint Test Action Group, it allows the deepest and more detailed mode to debug, hardware breakpoints, and direct flash access (write the application firmware directly to the flash memory)
+- UART
+- DFU: Device Firmware Upgrade
+
+### 01.Blinking Led
+- **GOAL**: make an external led blinking.
+- Requisites [hardware]:
+    - ESP32-Wrover-E (with its cable)
+    - Resostor (220 Ohm)
+    - Led (red)
+    
+#### What I've Learned
+Starting and calling ESP32 timer.
