@@ -30,3 +30,4 @@ Also, I've learned that on ESP32 there are three possible ways to flash the bina
     
 #### What I've Learned
 Starting and calling ESP32 timer.
+Also, learned a bit how to manage a c/cpp project in VS Code separated in more folders.
