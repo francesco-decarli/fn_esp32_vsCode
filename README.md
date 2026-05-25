@@ -21,7 +21,7 @@ Also, I've learned that on ESP32 there are three possible ways to flash the bina
 - UART
 - DFU: Device Firmware Upgrade
 
-### 01.Blinking Led
+# 01.Blinking Led
 - **GOAL**: make an external led blinking.
 - Requisites [hardware]:
     - ESP32-Wrover-E (with its cable)
@@ -31,3 +31,15 @@ Also, I've learned that on ESP32 there are three possible ways to flash the bina
 #### What I've Learned
 Starting and calling ESP32 timer.
 Also, learned a bit how to manage a c/cpp project in VS Code separated in more folders.
+
+# 01.Button to Led
+- **GOAL**: whenever the button is clicked, the led should light up.
+- Requisites [hardware]:
+    - ESP32-Wrover-E (with its cable)
+    - Resostor (220 Ohm) --> for the led
+    - Led (red)
+    - 2 x Resistor (10 kOhm) --> for the resistor
+    - Push button
+    
+#### What I've Learned
+The project is working but the monitor gives me an error related to the watchdog. Thus, I've added a delay and that wasn't enogh. I actually don't want to add FreeRTOS to this extremely easy projects.
