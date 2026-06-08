@@ -18,27 +18,33 @@ void app_setup()
         ESP_LOGD("Setup", "Failed to set BUTTON_PIN");
         return;
     }
-
-    if(esp_timer_early_init() != ESP_OK) {
-        ESP_LOGD("Setup", "Failed to initialize timer");
-        return;
-    }
 }
 
 void app_run()
 {
-    int64_t timer_timestamp_us = esp_timer_get_time();
     while(1)
     {
 
         // Whenever the button is pressed, turn on the LED
         if(gpio_get_level(BUTTON_PIN) == 0) // Button is active low
-            gpio_set_level(LED_PIN, 1);
+        {
+            // Delay (for debounce)
+            esp_rom_delay_us(LOOP_DELAY_US);
+            
+            // If the button is still pressed, change the LED state
+            if(gpio_get_level(BUTTON_PIN) == 0)
+                gpio_set_level(LED_PIN, 1);
+        }
         else
-            gpio_set_level(LED_PIN, 0);
-        timer_timestamp_us = esp_timer_get_time();
+        {
+            // Delay (for debounce)
+            esp_rom_delay_us(LOOP_DELAY_US);
 
+            // If the button is not pressed, change the LED state
+            if(gpio_get_level(BUTTON_PIN) == 1)
+                gpio_set_level(LED_PIN, 0);
+        }
         // Delay
-        while (esp_timer_get_time() - timer_timestamp_us < LOOP_DELAY_US) {};        
+        esp_rom_delay_us(LOOP_DELAY_US);
     }
 }
