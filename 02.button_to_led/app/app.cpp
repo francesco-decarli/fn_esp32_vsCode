@@ -2,11 +2,12 @@
 
 #include "driver/gpio.h"
 #include "esp_log.h"
-#include "esp_timer.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 #define LED_PIN GPIO_NUM_4
 #define BUTTON_PIN GPIO_NUM_13
-#define LOOP_DELAY_US 20'000 // 20 ms
+#define LOOP_DELAY_MS 20
 
 void app_setup()
 {
@@ -29,7 +30,7 @@ void app_run()
         if(gpio_get_level(BUTTON_PIN) == 0) // Button is active low
         {
             // Delay (for debounce)
-            esp_rom_delay_us(LOOP_DELAY_US);
+            vTaskDelay(LOOP_DELAY_MS / portTICK_PERIOD_MS);
             
             // If the button is still pressed, change the LED state
             if(gpio_get_level(BUTTON_PIN) == 0)
@@ -38,13 +39,13 @@ void app_run()
         else
         {
             // Delay (for debounce)
-            esp_rom_delay_us(LOOP_DELAY_US);
+            vTaskDelay(LOOP_DELAY_MS / portTICK_PERIOD_MS);
 
             // If the button is not pressed, change the LED state
             if(gpio_get_level(BUTTON_PIN) == 1)
                 gpio_set_level(LED_PIN, 0);
         }
         // Delay
-        esp_rom_delay_us(LOOP_DELAY_US);
+        vTaskDelay(LOOP_DELAY_MS / portTICK_PERIOD_MS);
     }
 }

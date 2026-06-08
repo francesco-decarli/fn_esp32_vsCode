@@ -43,4 +43,4 @@ Also, learned a bit how to manage a c/cpp project in VS Code separated in more f
     
 #### What I've Learned
 The project is working but the monitor gives me an error related to the watchdog. Thus, I've added a delay and that wasn't enogh. I actually don't want to add FreeRTOS to this extremely easy projects.
-I've discovered that ESP-IDF projects do already have FreeRTOS running, thus I'm going to use it.
+I've discovered that ESP-IDF projects do already have FreeRTOS running, thus I'm going to use it and it actually solved the problem.
